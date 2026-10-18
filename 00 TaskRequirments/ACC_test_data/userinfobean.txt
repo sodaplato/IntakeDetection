@@ -1,0 +1,2 @@
+externalid,height,weight,age,gender
+HNU00001,172.0,68.0,29.0,男

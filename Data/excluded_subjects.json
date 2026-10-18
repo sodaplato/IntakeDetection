@@ -1,0 +1,32 @@
+{
+  "source": "用户转述主办方说明",
+  "excluded_externalids": [
+    "HNU21007",
+    "HNU21026j",
+    "HNU21030"
+  ],
+  "matching_rule": "externalid.strip() in excluded_externalids",
+  "healthid_expansion": false,
+  "excluded_data_directory": "ExcludedData",
+  "user_info_modified": false,
+  "counts": {
+    "IMU+PPG.csv": {
+      "original": 1165,
+      "excluded": 15,
+      "remaining": 1150,
+      "excluded_by_subject": {
+        "HNU21007": 1,
+        "HNU21026j": 14
+      }
+    },
+    "MealInfo.csv": {
+      "original": 288,
+      "excluded": 10,
+      "remaining": 278,
+      "excluded_by_subject": {
+        "HNU21026j": 8,
+        "HNU21007": 2
+      }
+    }
+  }
+}

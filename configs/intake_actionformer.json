@@ -1,0 +1,32 @@
+{
+  "seed": 2026,
+  "preprocess": {
+    "bin_ms": 5000,
+    "gap_ms": 30000,
+    "ppg_channels": 20,
+    "min_tokens": 16
+  },
+  "model": {
+    "width": 64,
+    "heads": 4,
+    "levels": 5,
+    "attention_window": 9,
+    "max_tokens": 16384
+  },
+  "train": {
+    "epochs": 30,
+    "batch_size": 2,
+    "learning_rate": 0.0003,
+    "weight_decay": 0.01,
+    "grad_clip": 1.0
+  },
+  "inference": {
+    "score_threshold": 0.3,
+    "nms_iou": 0.5,
+    "max_segments": 100,
+    "min_duration_ms": 30000
+  },
+  "evaluation": {
+    "iou_threshold": 0.25
+  }
+}

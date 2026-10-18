@@ -1,0 +1,45 @@
+# ActionFormer 进食区间检测配置；相对路径以项目根目录为基准。
+seed: 2026
+
+run:
+  data_dir: Data
+  cache_dir: artifacts/intake
+  output_dir: runs/actionformer       # Slurm 作业结果放到其下 job_<作业编号>/
+  device: cuda:0
+  threads: 4
+  limit_files: 0                     # 0=全量；6=最小调试子集（请同时换 cache_dir）
+  steps_per_epoch: 0                 # 0=每轮全部 batch
+  evaluate_test: true
+
+preprocess:
+  bin_ms: 5000                       # 特征时间格长度，保留绝对时间映射
+  gap_ms: 30000                      # 超过此长度的 ACC 缺口分成不同有效段
+  ppg_channels: 20
+  min_tokens: 16
+
+model:
+  name: actionformer
+  width: 64
+  heads: 4
+  levels: 5
+  attention_window: 9                # 局部注意力窗口；使用正奇数
+  max_tokens: 16384                  # 超限段见 manifest.rejected_runs
+
+train:
+  epochs: 30
+  batch_size: 2
+  learning_rate: 0.0003
+  weight_decay: 0.01
+  grad_clip: 1.0
+
+inference:
+  score_threshold: 0.3
+  nms_iou: 0.5
+  max_segments: 100
+  min_duration_ms: 30000
+
+evaluation:
+  iou_threshold: 0.25                # 严格 IoU > 0.25 才算正确检测，等于不算
+  # 主指标：F1；同时报告灵敏度和阳性预测率。
+  # 次指标：匹配成功事件的开始/结束时间 MAE，单位秒。
+  # best.pt 按验证集 F1 最大选取；F1 相同时选边界平均 MAE 更小者。

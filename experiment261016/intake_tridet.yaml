@@ -1,0 +1,46 @@
+# TriDet 进食区间检测；与 ActionFormer 使用相同数据、特征、划分和评估。
+seed: 2026
+
+run:
+  data_dir: Data
+  cache_dir: artifacts/intake          # 预处理一致时可与 ActionFormer 共享缓存
+  output_dir: runs/tridet              # 结果位于 job_<Slurm作业编号>/
+  device: cuda:0
+  threads: 4
+  limit_files: 0                       # 0=全量；调试可设6，同时更换 cache_dir
+  steps_per_epoch: 0
+  evaluate_test: true
+
+preprocess:
+  bin_ms: 5000
+  gap_ms: 30000
+  ppg_channels: 20
+  min_tokens: 16
+
+model:
+  name: tridet                         # 实际实例化原版 TriDet，SGP + Trident head
+  width: 64                            # 必须能被16整除
+  levels: 5
+  sgp_window: 1                        # SGP窗口，正奇数；不是Transformer注意力窗口
+  sgp_mlp_dim: 128
+  num_bins: 16                         # Trident边界分布的bin数
+  k: 5
+  iou_weight_power: 0.2
+  input_noise: 0.0005
+  max_tokens: 16384
+
+train:
+  epochs: 30
+  batch_size: 2
+  learning_rate: 0.0003
+  weight_decay: 0.01
+  grad_clip: 1.0
+
+inference:
+  score_threshold: 0.3
+  nms_iou: 0.5
+  max_segments: 100
+  min_duration_ms: 30000
+
+evaluation:
+  iou_threshold: 0.25                 # 严格 IoU > 0.25；主指标F1，次指标边界MAE

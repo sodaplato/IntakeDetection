@@ -1,0 +1,62 @@
+# Raw datasets; retain the exclusion rules required by data preparation.
+/Data/*
+!/Data/excluded_subjects.json
+/DiningPictures/
+/ExcludedData/
+*.zip
+*.rar
+*.7z
+*.tar
+*.tar.gz
+/进食检测异常数据说明.xls
+
+# Generated features, experiment outputs and checkpoints.
+/artifacts/
+/runs/
+/ACC_test_data/
+/results.csv
+*.pt
+*.pth
+*.pth.tar
+*.ckpt
+*.npz
+*.npy
+
+# Generated reports and previews; keep the written project documentation.
+/reports/*
+!/reports/*.md
+
+# Scheduler logs.
+*.out
+*.err
+
+# Upstream example datasets and training outputs.
+/Actionformer/data/
+/Actionformer/ckpt/
+/Actionformer/pretrained/
+/TriDet-master/data/
+/TriDet-master/ckpt/
+/TriDet-master/pretrained/
+
+# Python and packaging output.
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+*.egg-info/
+/build/
+/dist/
+
+# Local credentials and agent state.
+.aws/
+.codex/
+.agents/
+.env
+.env.*
+!.env.example
+
+# Editor and OS files.
+.idea/
+.DS_Store
+Thumbs.db

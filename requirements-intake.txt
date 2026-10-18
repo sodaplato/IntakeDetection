@@ -1,0 +1,8 @@
+# Python >=3.9. Install the appropriate CPU/CUDA torch build for your machine.
+torch>=2.1,<3
+numpy>=1.23,<2
+pandas>=1.5,<3
+PyYAML>=6,<7
+# Imported by the upstream ActionFormer utility package:
+joblib>=1.2
+scipy>=1.9,<2
