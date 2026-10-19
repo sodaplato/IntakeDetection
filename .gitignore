@@ -26,9 +26,9 @@
 /reports/*
 !/reports/*.md
 
-# Scheduler logs.
-*.out
-*.err
+# # Scheduler logs.
+# *.out
+# *.err
 
 # Upstream example datasets and training outputs.
 /Actionformer/data/

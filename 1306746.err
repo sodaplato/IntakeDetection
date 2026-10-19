@@ -1,0 +1,5 @@
+sbatch: error: 【作业提交被拒绝】
+sbatch: error: 您使用了 --mem 参数指定了内存资源
+sbatch: error: 系统会根据您申请的 CPU 核数自动匹配内存资源
+sbatch: error: 请移除 --mem 参数后重新提交作业
+sbatch: error: Batch job submission failed: Unspecified error
